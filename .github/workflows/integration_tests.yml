@@ -25,6 +25,8 @@ jobs:
       with:
         java-version: '17'
         distribution: 'adopt'
+    - name: Change to Project Directory
+      run: cd helloWorld
     - name: Build with Maven
       run: mvn clean install
 
