@@ -28,8 +28,8 @@ jobs:
    
     - name: Build with Maven
       run: mvn clean install
-      working-directory: ./helloworld
+      working-directory: helloworld
 
     - name: Run Integration Tests
       run: mvn test
-      working-directory: ./helloworld
+      working-directory: helloworld
