@@ -26,10 +26,12 @@ jobs:
         java-version: '17'
         distribution: 'adopt'
    
-    - name: Build with Maven
-      run: mvn clean install
-      working-directory: helloworld
+    # - name: Build with Maven
+    #   run: mvn clean install
+    #   working-directory: helloworld
 
-    - name: Run Integration Tests
-      run: mvn test
-      working-directory: helloworld
+    # - name: Run Integration Tests
+    #   run: mvn test
+    #   working-directory: helloworld
+    - name: Run Integration Tests in helloWorld
+      run: bash helloWorld/run-test.sh
