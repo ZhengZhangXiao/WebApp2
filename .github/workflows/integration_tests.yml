@@ -3,6 +3,8 @@ name: Integration Tests
 on:
   pull_request:
     branches: [ main ]
+  push:
+    branches: [ main ]  
 
 jobs:
   integration-test:
@@ -12,7 +14,7 @@ jobs:
         image: mysql:5.7
         env:
           MYSQL_ROOT_PASSWORD: zhenyang7838675
-          MYSQL_DATABASE: testdb
+          MYSQL_DATABASE: clod01
         ports:
           - 3306:3306
       
@@ -23,7 +25,8 @@ jobs:
       with:
         java-version: '17'
         distribution: 'adopt'
-    - name: Set execute permission for mvnw
-      run: chmod +x mvnw     
-    - name: Build and Test
-      run: mvnw clean test
+    - name: Build with Maven
+      run: mvn clean install
+
+    - name: Run Integration Tests
+      run: mvn test
