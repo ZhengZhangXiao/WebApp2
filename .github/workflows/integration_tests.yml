@@ -25,10 +25,11 @@ jobs:
       with:
         java-version: '17'
         distribution: 'adopt'
-    - name: Change Directory to helloworld
-      run: cd helloWorld
+   
     - name: Build with Maven
       run: mvn clean install
+      working-directory: ./helloworld
 
     - name: Run Integration Tests
       run: mvn test
+      working-directory: ./helloworld
