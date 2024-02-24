@@ -14,10 +14,14 @@ jobs:
         image: mysql:5.7
         env:
           MYSQL_ROOT_PASSWORD: zhenyang7838675
-          MYSQL_DATABASE: clod01_test
+          MYSQL_DATABASE: clod01
         ports:
           - 3306:3306
-      
+        options: >-
+          --health-cmd="mysqladmin ping"
+          --health-interval=10s
+          --health-timeout=10s
+          --health-retries=10
     steps:
     - uses: actions/checkout@v3
     - name: Set up JDK 17
@@ -33,5 +37,16 @@ jobs:
     # - name: Run Integration Tests
     #   run: mvn test
     #   working-directory: helloworld
+    # - name: Run Integration Tests in helloWorld
+    #   run: bash helloWorld/run-test.sh
+    - name: Cache Maven packages
+      uses: actions/cache@v2
+      with:
+         path: ~/.m2
+         key: ${{ runner.os }}-m2-${{ hashFiles('**/pom.xml') }}
+         restore-keys: ${{ runner.os }}-m2
+
     - name: Run Integration Tests in helloWorld
-      run: bash helloWorld/run-test.sh
+      run: |
+        cd helloWorld
+        mvn clean test -Dspring.datasource.url=jdbc:mysql://localhost:3306/clod01 -Dspring.datasource.username=root -Dspring.datasource.password=zhenyang7838675
