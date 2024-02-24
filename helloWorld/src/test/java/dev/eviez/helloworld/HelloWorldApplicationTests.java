@@ -53,11 +53,11 @@ class HelloWorldApplicationTests {
     private TestRestTemplate restTemplate;
 
     private String getRootUrl() {
-        return "http://localhost:" + port + "/users";
+        return "http://localhost:" + 8080 + "/users";
     }
     @Test
     public void testCreateUser() {
-        String userJson = "{\"id\":\"100\",\"email\":\"test08@gmail.com\", \"password\":\"1234567\",\"firstName\":\"test06\",\"lastName\":\"test06\"}";
+        String userJson = "{\"id\":\"100\",\"email\":\"test11@gmail.com\", \"password\":\"1234567\",\"firstName\":\"test06\",\"lastName\":\"test06\"}";
         HttpHeaders headers = new HttpHeaders();
         headers.setContentType(MediaType.APPLICATION_JSON);
 
@@ -77,7 +77,7 @@ class HelloWorldApplicationTests {
         TestRestTemplate authRestTemplate = restTemplate.withBasicAuth("test03@gmail.com", "1234567");
 
         // Step 1: Create a user
-        String createUserJson = "{\"id\":\"105\",\"email\":\"test09@gmail.com\", \"password\":\"1234567\",\"firstName\":\"test01\",\"lastName\":\"test01\"}";
+        String createUserJson = "{\"id\":\"105\",\"email\":\"test10@gmail.com\", \"password\":\"1234567\",\"firstName\":\"test01\",\"lastName\":\"test01\"}";
         HttpHeaders headers = new HttpHeaders();
         headers.setContentType(MediaType.APPLICATION_JSON);
         HttpEntity<String> createEntity = new HttpEntity<>(createUserJson, headers);
@@ -87,7 +87,7 @@ class HelloWorldApplicationTests {
         Long userId = extractUserIdFromResponse(createResponse);
 
         // Step 2: Update the user
-        String updateUserJson = "{ \"firstName\":\"test09\",\"lastName\":\"test09\"}";
+        String updateUserJson = "{ \"firstName\":\"test10\",\"lastName\":\"test10\"}";
         HttpEntity<String> updateEntity = new HttpEntity<>(updateUserJson, headers);
         // Assuming /{id} is the endpoint for updating user. Replace "{id}" with actual user ID.
         authRestTemplate.put(getRootUrl() + "/"+userId, updateEntity);
