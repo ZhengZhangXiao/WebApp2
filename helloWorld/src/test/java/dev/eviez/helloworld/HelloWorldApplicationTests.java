@@ -53,7 +53,7 @@ class HelloWorldApplicationTests {
     private TestRestTemplate restTemplate;
 
     private String getRootUrl() {
-        return "http://localhost:" + 8080 + "/users";
+        return "http://localhost:" + port + "/users";
     }
     @Test
     public void testCreateUser() {
